@@ -7,6 +7,7 @@ import android.nfc.Tag
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.example.background.KEY_IMAGE_URI
 import com.example.background.R
 import com.example.background.TAG_OUTPUT
 
@@ -15,6 +16,8 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx,params) {
     override fun doWork(): Result {
 
         val appContext = applicationContext
+
+        val resourceUri = inputData.getString(KEY_IMAGE_URI)
         makeStatusNotification("Blurrjng image", appContext)
 
         return try {
