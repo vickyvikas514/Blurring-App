@@ -23,6 +23,8 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx,params) {
         val resourceUri = inputData.getString(KEY_IMAGE_URI)
         makeStatusNotification("Blurrjng image", appContext)
 
+        sleep()
+
         return try {
             //checking that resoureuri !=Null
         if(TextUtils.isEmpty(resourceUri)){
@@ -42,7 +44,7 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx,params) {
             // returning output uri
             val outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())
             Result.success(outputData)
-            
+
         } catch  (throwable: Throwable) {
            Log.e(TAG_OUTPUT,"Error applying blur")
             Result.failure()
